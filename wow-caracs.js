@@ -1,4 +1,4 @@
-var _ = require('lodash')
+var _ = require('lodash');
 var WoWCaracs = function(){};
 
 WoWCaracs.prototype.caracteristics = [
@@ -12,23 +12,23 @@ WoWCaracs.prototype.caracteristics = [
 	},
 	{
 		"id": 3,
-		"name": "Agility"
+		"name": "Agilité"
 	},
 	{
 		"id": 4,
-		"name": "Strength"
+		"name": "Force"
 	},
 	{
 		"id": 5,
-		"name": "Intellect"
+		"name": "Intelligence"
 	},
 	{
 		"id": 6,
-		"name": "Spirit"
+		"name": "Esprit"
 	},
 	{
 		"id": 7,
-		"name": "Stamina"
+		"name": "Endurance"
 	},
 	{
 		"id": 12,
@@ -112,7 +112,7 @@ WoWCaracs.prototype.caracteristics = [
 	},
 	{
 		"id": 32,
-		"name": "Critical Strike"
+		"name": "Critique"
 	},
 	{
 		"id": 33,
@@ -128,7 +128,7 @@ WoWCaracs.prototype.caracteristics = [
 	},
 	{
 		"id": 36,
-		"name": "Haste"
+		"name": "Hâte"
 	},
 	{
 		"id": 37,
@@ -144,7 +144,7 @@ WoWCaracs.prototype.caracteristics = [
 	},
 	{
 		"id": 40,
-		"name": "Versatility"
+		"name": "Polyvalence"
 	},
 	{
 		"id": 41,
@@ -164,7 +164,7 @@ WoWCaracs.prototype.caracteristics = [
 	},
 	{
 		"id": 45,
-		"name": "Spell Power"
+		"name": "Puissance des sorts"
 	},
 	{
 		"id": 46,
@@ -180,11 +180,11 @@ WoWCaracs.prototype.caracteristics = [
 	},
 	{
 		"id": 49,
-		"name": "Mastery"
+		"name": "Maîtrise"
 	},
 	{
 		"id": 50,
-		"name": "Bonus Armor"
+		"name": "Armure bonus"
 	},
 	{
 		"id": 51,
@@ -220,7 +220,7 @@ WoWCaracs.prototype.caracteristics = [
 	},
 	{
 		"id": 59,
-		"name": "Multistrike"
+		"name": "Frappe multiple"
 	},
 	{
 		"id": 60,
@@ -228,15 +228,15 @@ WoWCaracs.prototype.caracteristics = [
 	},
 	{
 		"id": 61,
-		"name": "Speed"
+		"name": "Vitesse"
 	},
 	{
 		"id": 62,
-		"name": "Leech"
+		"name": "Ponction"
 	},
 	{
 		"id": 63,
-		"name": "Avoidance"
+		"name": "Evitement"
 	},
 	{
 		"id": 64,
@@ -252,7 +252,7 @@ WoWCaracs.prototype.caracteristics = [
 	},
 	{
 		"id": 67,
-		"name": "Versatility"
+		"name": "Polyvalence"
 	},
 	{
 		"id": 68,
@@ -292,7 +292,7 @@ WoWCaracs.prototype.Primaries = function(bonusStats){
 };
 
 WoWCaracs.prototype.Secondaries = function(bonusStats){
-	var inter = _.intersection(this.ExtractIds(bonusStats),[32,36,40,45,49,50,59,67])
+	var inter = _.intersection(this.ExtractIds(bonusStats),[32,36,40,45,49,50,59,67]);
 	return _.filter(bonusStats,function(stat){
 		return _.contains(inter, stat.stat);
 	});
