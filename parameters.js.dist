@@ -1,0 +1,16 @@
+var Parameters = function(){};
+
+Parameters.prototype.WoW = {
+	'baseUrl': 'http://eu.battle.net/api/wow/',
+	'fields': ['news'],
+	'locale': ['fr_FR'],
+	'guild': 'On en Aggrø',
+	'realm': 'Hyjal',
+	'apikey': '*********'
+};
+
+Parameters.prototype.Slack = {
+	'hook':'xxxxx'
+};
+
+module.exports = new Parameters();
