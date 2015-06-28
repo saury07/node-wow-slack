@@ -21,6 +21,9 @@ var buildNewsMessage = function(item, callback){
 					short:true
 				}
 			];
+			if(itemData.itemLevel < Parameters.WoW.minIlvl){
+				return;
+			}
 			if(itemData.inventoryType){
 				var fullType = WoWInventory.inventoryTypes[''+itemData.inventoryType];
 				if(fullType){

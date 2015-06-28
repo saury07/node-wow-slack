@@ -6,7 +6,8 @@ Parameters.prototype.WoW = {
 	'locale': ['fr_FR'],
 	'guild': 'On en Aggrø',
 	'realm': 'Hyjal',
-	'apikey': '*********'
+	'apikey': '*********',
+	'minIlvl': 600
 };
 
 Parameters.prototype.Slack = {
