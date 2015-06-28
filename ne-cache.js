@@ -24,4 +24,15 @@ neCache.prototype.saveNews = function (item) {
 	});
 };
 
+neCache.prototype.findForCharacter = function(character, callback){
+	dbNews.find({character:character}).sort({timestamp:-1}).exec(function(err, docs){
+		if(err){
+			console.log(err);
+		}
+		else{
+			callback(docs);
+		}
+	});
+};
+
 module.exports = new neCache();

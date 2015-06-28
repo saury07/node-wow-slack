@@ -71,9 +71,30 @@ var run = function(){
 	});
 };
 
+var runCharacter = function(character){
+	neCache.findForCharacter(character, function(docs){
+		console.log(docs.length)
+		if(docs && docs.length > 0){
+			_.forEach(docs, function(doc){
+				buildNewsMessage(doc,function(message){
+					slack.notify(message);
+				});
+			});
+		}
+	});
+};
+
 router.get('/', function(req, res, next){
-	run();
+	var username = req.query.text;
+	if(username != undefined){
+		runCharacter(username);
+	}
+	else{
+		run();
+	}
+
 	res.send('Ok');
 });
+
 
 module.exports = router;
