@@ -12,8 +12,13 @@ WoW.prototype.guildInfos = function(callback){
 			'locale=' + p.locale;
 	request(url, function(error, response, data){
 		if(!error){
-			var parsed = JSON.parse(data);
-			callback(parsed);
+			try {
+				var parsed = JSON.parse(data);
+				callback(parsed);
+			}
+			catch(err){
+				console.log('Impossible to parse incoming data');
+			}
 		}
 	});
 };

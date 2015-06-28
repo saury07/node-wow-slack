@@ -68,22 +68,26 @@ var buildNewsMessage = function(item, callback){
 	}
 };
 
-WoW.guildInfos(function(data) {
-	var news = data.news;
-	_.forEach(news, function(item){
-		neCache.findNews(item, function(docs){
-			if(docs.length == 0){
-				neCache.saveNews(item);
-				buildNewsMessage(item,function(message){
-					slack.notify(message);
-				});
-			}
+var run = function(){
+	WoW.guildInfos(function(data) {
+		var news = data.news;
+		console.log(news.length + ' news found');
+		_.forEach(news, function(item){
+			neCache.findNews(item, function(docs){
+				if(docs.length == 0){
+					neCache.saveNews(item);
+					buildNewsMessage(item,function(message){
+						slack.notify(message);
+					});
+				}
+			});
 		});
 	});
-});
+};
 
-router.get('/', function(){
-
+router.get('/', function(req, res, next){
+	run();
+	res.send('Ok');
 });
 
 module.exports = router;
