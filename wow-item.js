@@ -1,5 +1,5 @@
 var _ = require('lodash');
-var WoWCaracs = require('../wow-caracs.js');
+var WoWCaracs = require('./wow-caracs.js');
 
 var WoWItem = function(){};
 
