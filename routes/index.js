@@ -3,6 +3,7 @@ var _ = require('lodash');
 var WoW = require('../wow.js');
 var WoWCaracs = require('../wow-caracs.js');
 var WoWInventory = require('../wow-inventory.js');
+var WoWItem = requiret('../wow-item.js');
 var Parameters = require('../parameters.js');
 var router = express.Router();
 var Slack = require('node-slackr');
@@ -27,27 +28,13 @@ var buildNewsMessage = function(item, callback){
 					fields.push({title:"Emplacement",value:fullType,short:true});
 				}
 			}
-			var primaries = WoWCaracs.Primaries(itemData.bonusStats);
+			var primaries = WoWItem.PrimariesCaracs(itemData);
 			if(primaries && primaries.length > 0){
-				var v = "";
-				_.forEach(primaries,function(stat){
-					var name = WoWCaracs.Name(stat.stat);
-					if(name){
-						v += name + " : "+stat.amount+"\n";
-					}
-				});
-				fields.push({title : "Primaires", value: v, short:true});
+				fields.push({title: "Primaires", value:WoWItem.toString(primaries), short:true});
 			}
-			var secondaries = WoWCaracs.Secondaries(itemData.bonusStats);
+			var secondaries = WoWItem.SecondariesCaracs(itemData);
 			if(secondaries && secondaries.length > 0){
-				var v = "";
-				_.forEach(secondaries,function(stat){
-					var name = WoWCaracs.Name(stat.stat);
-					if(name){
-						v += name + " : "+stat.amount+"\n";
-					}
-				});
-				fields.push({title : "Secondaires", value: v, short:true});
+				fields.push({title: "Secondaires", value:WoWItem.toString(secondaries), short:true});
 			}
 			var message = {
 				channel: '#loot',
