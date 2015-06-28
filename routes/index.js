@@ -3,17 +3,15 @@ var _ = require('lodash');
 var WoW = require('../wow.js');
 var WoWCaracs = require('../wow-caracs.js');
 var WoWInventory = require('../wow-inventory.js');
-var Parameters = require('../parameters.js')
+var Parameters = require('../parameters.js');
 var router = express.Router();
 var Slack = require('node-slackr');
 var slack = new Slack(Parameters.Slack.hook,{
 	username: "wow-bot"
 });
+var neCache = require ("../ne-cache.js");
 
-
-WoW.guildInfos(function(data){
-	var news = data.news;
-	var item = news[0];
+var buildNewsMessage = function(item, callback){
 	if(item.type === 'itemLoot'){
 		WoW.itemInfos(item.itemId, function(itemData){
 			var fields = [
@@ -65,9 +63,23 @@ WoW.guildInfos(function(data){
 					}
 				]
 			};
-			slack.notify(message);
+			callback(message);
 		});
 	}
+};
+
+WoW.guildInfos(function(data) {
+	var news = data.news;
+	_.forEach(news, function(item){
+		neCache.findNews(item, function(docs){
+			if(docs.length == 0){
+				neCache.saveNews(item);
+				buildNewsMessage(item,function(message){
+					slack.notify(message);
+				});
+			}
+		});
+	});
 });
 
 router.get('/', function(){
