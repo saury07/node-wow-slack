@@ -29,7 +29,12 @@ WoW.prototype.itemInfos = function(itemId, callback){
 	request(url, function(error, response, data){
 		if(!error){
 			var parsed = JSON.parse(data);
-			callback(parsed);
+			if(!parsed.itemLevel && parsed.availableContexts){
+				WoW.prototype.itemInfos(itemId+'/'+parsed.availableContexts[0], callback);
+			}
+			else {
+				callback(parsed);
+			}
 		}
 	});
 };
