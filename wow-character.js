@@ -4,6 +4,7 @@ var request = require('request');
 var WoWCharacter = function(){};
 
 WoWCharacter.prototype.baseInfo = function(charname, callback){
+	charname = encodeURI(charname);
 	p = parameters.WoW;
 	url = p.baseUrl + '/character/'+ p.realm+'/'+charname+'?locale='+ p.locale+'&apikey'+p.apikey;
 	request(url, function(error, response, data){
