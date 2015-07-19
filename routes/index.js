@@ -13,10 +13,10 @@ var neCache = require ("../ne-cache.js");
 
 var buildNewsMessage = function(item, callback){
 	if(item.type === 'itemLoot'){
-		WoW.itemInfos(item.itemId, function(itemData){
+		WoW.itemInfos(item.itemId, true, function(itemData, sure){
 			var fields = [
 				{
-					title: 'Item Level',
+					title: sure ? 'Item level': 'Item level (incertain)',
 					value: itemData.itemLevel,
 					short:true
 				}
