@@ -265,6 +265,18 @@ WoWCaracs.prototype.caracteristics = [
 	{
 		"id": 70,
 		"name": "Unused 12"
+	},
+	{
+		"id": 72,
+		"name": "Force / Agilité"
+	},
+	{
+		"id": 73,
+		"name": "Intelligence / Agilité"
+	},
+	{
+		"id":74,
+		"name": "Force / Intelligence"
 	}
 ];
 
