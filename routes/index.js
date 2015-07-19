@@ -3,6 +3,7 @@ var _ = require('lodash');
 var moment = require('moment');
 moment.locale('fr');
 var WoW = require('../wow.js');
+var WoWCharacter = require('../wow-character.js');
 var WoWInventory = require('../wow-inventory.js');
 var WoWItem = require('../wow-item.js');
 var Parameters = require('../parameters.js');
@@ -40,21 +41,26 @@ var buildNewsMessage = function(item, callback){
 			if(secondaries && secondaries.length > 0){
 				fields.push({title: "Secondaires", value:WoWItem.toString(secondaries), short:true});
 			}
-			var message = {
-				channel: '#loot',
-				attachments:[
-					{
-						fallback:item.character + ' a loot ' + itemData.name + ' (iLvL '+itemData.itemLevel+')',
-						pretext:item.character,
-						title:itemData.name,
-						title_link:'http://fr.wowhead.com/item='+item.itemId,
-						thumb_url: WoW.itemIconUrl(itemData.icon),
-						color: WoW.itemColor(itemData.quality),
-						fields:fields
-					}
-				]
-			};
-			callback(message);
+			WoWCharacter.baseInfo(item.character, function(characterData){
+				var message = {
+					channel: '#loot',
+					attachments:[
+						{
+							fallback:item.character + ' a loot ' + itemData.name + ' (iLvL '+itemData.itemLevel+')',
+							pretext:item.character,
+							title:itemData.name,
+							title_link:'http://fr.wowhead.com/item='+item.itemId,
+							thumb_url: WoW.itemIconUrl(itemData.icon),
+							color: WoW.itemColor(itemData.quality),
+							fields:fields
+						}
+					]
+				};
+				if(characterData){
+					message.icon_url = WoWCharacter.portrait(characterData.thumbnail)
+				}
+				callback(message);
+			});
 		});
 	}
 };
@@ -118,6 +124,6 @@ router.get('/', function(req, res, next){
 	res.send('Ok');
 });
 
-runCharacter('Tahirï');
+run();
 
 module.exports = router;
