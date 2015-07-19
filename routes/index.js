@@ -1,5 +1,7 @@
 var express = require('express');
 var _ = require('lodash');
+var moment = require('moment');
+moment.locale('fr');
 var WoW = require('../wow.js');
 var WoWInventory = require('../wow-inventory.js');
 var WoWItem = require('../wow-item.js');
@@ -57,6 +59,23 @@ var buildNewsMessage = function(item, callback){
 	}
 };
 
+var buildNewsMessageLight = function(item, callback){
+	if(item.type === 'itemLoot'){
+		WoW.itemInfos(item.itemId, true, function(itemData, sure){
+			var text = item.character + ' a loot '+itemData.name + ' (iLvl ' + itemData.itemLevel;
+			if (!sure){
+				text += ', incertain';
+			}
+			text += ') le ' + moment(item.timestamp, 'x').format('dddd DD MMMM');
+			callback({
+				text: text,
+				channel: '#loot',
+				icon_url: WoW.itemIconUrl(itemData.icon)
+			});
+		});
+	}
+};
+
 var run = function(){
 	WoW.guildInfos(function(data) {
 		var news = data.news;
@@ -79,7 +98,7 @@ var runCharacter = function(character){
 		console.log(docs.length)
 		if(docs && docs.length > 0){
 			_.forEach(docs, function(doc){
-				buildNewsMessage(doc,function(message){
+				buildNewsMessageLight(doc,function(message){
 					slack.notify(message);
 				});
 			});
@@ -99,5 +118,6 @@ router.get('/', function(req, res, next){
 	res.send('Ok');
 });
 
+runCharacter('Tahirï');
 
 module.exports = router;
