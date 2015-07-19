@@ -297,7 +297,7 @@ WoWCaracs.prototype.ExtractIds = function(bonusStats){
 };
 
 WoWCaracs.prototype.Primaries = function(bonusStats){
-	var inter = _.intersection(this.ExtractIds(bonusStats),[3,4,5,6,7]);
+	var inter = _.intersection(this.ExtractIds(bonusStats),[3,4,5,6,7,72,73,74]);
 	return _.filter(bonusStats,function(stat){
 		return _.contains(inter, stat.stat);
 	});
