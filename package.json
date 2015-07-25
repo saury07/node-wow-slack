@@ -17,6 +17,7 @@
     "node-slackr": "latest",
     "lodash":"latest",
     "nedb":"latest",
-    "moment":"latest"
+    "moment":"latest",
+    "async":"latest"
   }
 }

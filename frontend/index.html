@@ -1,0 +1,38 @@
+<!doctype html>
+<html ng-app="wowApp">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="index.js"></script>
+</head>
+<body>
+<div ng-controller="WoWLootsController" class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <div ng-repeat="character in characters">
+                <a ng-click="selectCharacter(character)">
+                    {{character}}
+                </a>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="form-inline">
+                Filtre :
+                <select class="form-control" ng-model="ilvlFilter" ng-options="option.display for option in ilvlFilterOptions
+                track by option.value">
+
+                </select>
+            </div>
+            <div ng-repeat="loot in loots" ng-show="loot.ilvl >= ilvlFilter.value ">
+                <img ng-src="{{loot.icon}}"/>
+                <span>{{loot.name}}</span>
+                <span>{{loot.ilvl}}</span>
+                <span ng-show="!loot.sure">(incertain)</span>
+                <span>{{loot.timestamp | moment:'dddd DD MMMM'}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

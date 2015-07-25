@@ -35,4 +35,19 @@ neCache.prototype.findForCharacter = function(character, callback){
 	});
 };
 
+neCache.prototype.listCharacters = function(callback){
+	dbNews.find().sort({character:1}).exec(function(err, docs){
+		if(err){
+			console.log(err);
+		}
+		else {
+			callback(_.map(_.uniq(docs, function (doc) {
+				return doc.character;
+			}), function (doc) {
+				return doc.character;
+			}));
+		}
+	});
+};
+
 module.exports = new neCache();
