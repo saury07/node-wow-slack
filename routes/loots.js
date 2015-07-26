@@ -15,6 +15,7 @@ router.get('/:character', function(req,res,next){
         if(docs && docs.length > 0){
             var prettyDocs = [];
             var finished = _.after(docs.length, function(){
+                prettyDocs =_.sortByOrder(prettyDocs,'timestamp', 'desc');
                 res.send({data: prettyDocs});
             });
             _.forEach(docs, function(doc){
