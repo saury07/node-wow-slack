@@ -2,17 +2,17 @@ var express = require('express');
 var _ = require('lodash');
 var moment = require('moment');
 moment.locale('fr');
-var WoW = require('../wow.js');
-var WoWCharacter = require('../wow-character.js');
-var WoWInventory = require('../wow-inventory.js');
-var WoWItem = require('../wow-item.js');
-var Parameters = require('../parameters.js');
+var WoW = require('../services/wow.js');
+var WoWCharacter = require('../services/wow-character.js');
+var WoWInventory = require('../services/wow-inventory.js');
+var WoWItem = require('../services/wow-item.js');
+var Parameters = require('../../parameters.js');
 var router = express.Router();
 var Slack = require('node-slackr');
 var slack = new Slack(Parameters.Slack.hook,{
 	username: "wow-bot"
 });
-var neCache = require ("../ne-cache.js");
+var neCache = require ("../services/ne-cache.js");
 
 var buildNewsMessage = function(item, callback){
 	if(item.type === 'itemLoot'){

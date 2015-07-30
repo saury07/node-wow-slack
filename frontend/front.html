@@ -4,6 +4,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="http://static.wowhead.com/widgets/power.js"></script>
+    <script>var wowhead_tooltips = { "colorlinks": true, "iconizelinks": true, "renamelinks": true }</script>
     <script src="index.js"></script>
 </head>
 <body>
@@ -26,8 +28,7 @@
             </div>
             <div ng-repeat="loot in loots" ng-show="loot.ilvl >= ilvlFilter.value ">
                 <img ng-src="{{loot.icon}}"/>
-                <span>{{loot.name}}</span>
-                <span>{{loot.ilvl}}</span>
+                <span><a target="_blank" ng-href="http://fr.wowhead.com/item={{loot.id}}">{{loot.name}}</a></span>
                 <span ng-show="!loot.sure">(incertain)</span>
                 <span>{{loot.timestamp | moment:'dddd DD MMMM'}}</span>
             </div>

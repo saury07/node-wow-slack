@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var neCache = require('../ne-cache.js');
-var WoW = require('../wow.js');
+var neCache = require('../services/ne-cache.js');
+var WoW = require('../services/wow.js');
 var _ = require('lodash');
 
 router.get('/', function(req, res, next){

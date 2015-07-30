@@ -1,4 +1,4 @@
-var parameters = require('./parameters.js');
+var parameters = require('./../../parameters.js');
 var request = require('request');
 
 var WoW = function() {};

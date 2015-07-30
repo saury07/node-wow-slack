@@ -2,7 +2,7 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
 
-var index = require('./routes/index');
+var index = require('./backend/routes/index');
 
 var app = express();
 
@@ -14,7 +14,7 @@ app.use(express.static('frontend'));
 app.set('view engine', 'jade');
 
 app.use('/', index);
-app.use('/loots', require('./routes/loots'));
+app.use('/loots', require('./backend/routes/loots'));
 
 module.exports = app;
 
