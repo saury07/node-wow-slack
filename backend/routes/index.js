@@ -16,7 +16,7 @@ var neCache = require ("../services/ne-cache.js");
 
 var buildNewsMessage = function(item, callback){
 	if(item.type === 'itemLoot'){
-		WoW.itemInfos(item.itemId, true, function(itemData, sure){
+		WoW.itemInfos(item.itemId, item.context, true, function(itemData, sure){
 			var fields = [
 				{
 					title: sure ? 'Item level': 'Item level (incertain)',
@@ -67,7 +67,7 @@ var buildNewsMessage = function(item, callback){
 
 var buildNewsMessageLight = function(item, callback){
 	if(item.type === 'itemLoot'){
-		WoW.itemInfos(item.itemId, true, function(itemData, sure){
+		WoW.itemInfos(item.itemId, item.context,true, function(itemData, sure){
 			var text = item.character + ' a loot '+itemData.name + ' (iLvl ' + itemData.itemLevel;
 			if (!sure){
 				text += ', incertain';

@@ -36,7 +36,7 @@ router.get('/:character', function(req,res,next){
 
 var buildItemDetails = function(item, callback){
     if(item.type === 'itemLoot'){
-        WoW.itemInfos(item.itemId, true, function(itemData, sure){
+        WoW.itemInfos(item.itemId, item.context,true, function(itemData, sure){
             callback({
                 name:itemData.name,
                 id:item.itemId,

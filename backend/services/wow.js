@@ -23,14 +23,18 @@ WoW.prototype.guildInfos = function(callback){
 	});
 };
 
-WoW.prototype.itemInfos = function(itemId, sure, callback){
+WoW.prototype.itemInfos = function(itemId, context, sure, callback){
 	p = parameters.WoW;
-	url = p.baseUrl + '/item/'+itemId+'?locale='+ p.locale+'&apikey'+p.apikey;
+	var url = p.baseUrl + '/item/'+itemId;
+	if(context){
+		url = url+'/'+context;
+	}
+	url = url+'?locale='+ p.locale+'&apikey'+p.apikey;
 	request(url, function(error, response, data){
 		if(!error){
 			var parsed = JSON.parse(data);
 			if(!parsed.itemLevel && parsed.availableContexts){
-				WoW.prototype.itemInfos(itemId+'/'+parsed.availableContexts[0], false, callback);
+				WoW.prototype.itemInfos(itemId,parsed.availableContexts[0], false, callback);
 			}
 			else {
 				callback(parsed, sure);
