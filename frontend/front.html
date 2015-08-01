@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-md-3">
             <div ng-repeat="character in characters">
-                <a ng-click="selectCharacter(character)">
+                <a ng-click="selectCharacter(character)" style="cursor: pointer">
                     {{character}}
                 </a>
             </div>
@@ -28,7 +28,7 @@
             </div>
             <div ng-repeat="loot in loots" ng-show="loot.ilvl >= ilvlFilter.value ">
                 <img ng-src="{{loot.icon}}"/>
-                <span><a target="_blank" ng-href="http://fr.wowhead.com/item={{loot.id}}">{{loot.name}}</a></span>
+                <span><a target="_blank" ng-href="http://fr.wowhead.com/item={{loot.id}}&bonus={{loot.formattedBonusList}}">{{loot.name}}</a></span>
                 <span ng-show="!loot.sure">(incertain)</span>
                 <span>{{loot.timestamp | moment:'dddd DD MMMM'}}</span>
             </div>
