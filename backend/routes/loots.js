@@ -36,11 +36,16 @@ router.get('/:character', function(req,res,next){
 
 var buildItemDetails = function(item, callback){
     if(item.type === 'itemLoot'){
-        WoW.itemInfos(item.itemId, item.context,true, function(itemData, sure){
+        WoW.itemInfos(item.itemId, item.context, true, function(itemData, sure){
+            var formattedBonusList = "";
+            _.each(item.bonusLists, function(bonus, index) {
+                formattedBonusList += (index == 0) ? bonus : ":"+bonus;
+            });
             callback({
                 name:itemData.name,
                 id:item.itemId,
                 ilvl:itemData.itemLevel,
+                formattedBonusList:formattedBonusList,
                 sure: sure,
                 timestamp: item.timestamp,
                 icon: WoW.itemIconUrl(itemData.icon)
