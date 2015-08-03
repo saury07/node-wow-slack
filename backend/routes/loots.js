@@ -37,15 +37,18 @@ router.get('/:character', function(req,res,next){
 var buildItemDetails = function(item, callback){
     if(item.type === 'itemLoot'){
         WoW.itemInfos(item.itemId, item.context, true, function(itemData, sure){
-            var formattedBonusList = "";
-            _.each(item.bonusLists, function(bonus, index) {
-                formattedBonusList += (index == 0) ? bonus : ":"+bonus;
-            });
+            var wowheadLink = 'http://fr.wowhead.com/item='+item.itemId;
+            if(item.bonusLists.length > 0) {
+                wowheadLink += "&bonus=";
+                _.each(item.bonusLists, function (bonus, index) {
+                    wowheadLink += (index == 0) ? bonus : ":" + bonus;
+                });
+            }
             callback({
                 name:itemData.name,
                 id:item.itemId,
                 ilvl:itemData.itemLevel,
-                formattedBonusList:formattedBonusList,
+                wowheadLink: wowheadLink,
                 sure: sure,
                 timestamp: item.timestamp,
                 icon: WoW.itemIconUrl(itemData.icon)
