@@ -38,7 +38,7 @@ var buildItemDetails = function(item, callback){
     if(item.type === 'itemLoot'){
         WoW.itemInfos(item.itemId, item.context, true, function(itemData, sure){
             var wowheadLink = 'http://fr.wowhead.com/item='+item.itemId;
-            if(item.bonusLists.length > 0) {
+            if(item.bonusLists && item.bonusLists.length > 0) {
                 wowheadLink += "&bonus=";
                 _.each(item.bonusLists, function (bonus, index) {
                     wowheadLink += (index == 0) ? bonus : ":" + bonus;
