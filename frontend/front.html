@@ -29,8 +29,7 @@
             <div ng-repeat="loot in loots" ng-show="loot.ilvl >= ilvlFilter.value ">
                 <img ng-src="{{loot.icon}}"/>
                 <span>
-                    <a target="_blank" ng-show="{{loot.formattedBonusList != ''}}" ng-href="http://fr.wowhead.com/item={{loot.id}}&bonus={{loot.formattedBonusList}}">{{loot.name}}</a>
-                    <a target="_blank" ng-show="{{loot.formattedBonusList == ''}}" ng-href="http://fr.wowhead.com/item={{loot.id}}">{{loot.name}}</a>
+                    <a target="_blank" ng-href="{{loot.wowheadLink}}">{{loot.name}}</a>
                 </span>
                 <span ng-show="!loot.sure">(incertain)</span>
                 <span>{{loot.timestamp | moment:'dddd DD MMMM'}}</span>
