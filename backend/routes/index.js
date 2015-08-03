@@ -41,13 +41,6 @@ var buildNewsMessage = function(item, callback){
 			if(secondaries && secondaries.length > 0){
 				fields.push({title: "Secondaires", value:WoWItem.toString(secondaries), short:true});
 			}
-			var wowheadLink = 'http://fr.wowhead.com/item='+item.itemId;
-			if(item.bonusLists.length > 0) {
-				wowheadLink += "&bonus=";
-				_.each(item.bonusLists, function (bonus, index) {
-					wowheadLink += (index == 0) ? bonus : ":" + bonus;
-				});
-			}
 			WoWCharacter.baseInfo(item.character, function(characterData){
 				var message = {
 					channel: '#loot',
@@ -56,7 +49,7 @@ var buildNewsMessage = function(item, callback){
 							fallback:item.character + ' a loot ' + itemData.name + ' (iLvL '+itemData.itemLevel+')',
 							pretext:item.character,
 							title:itemData.name,
-							title_link: wowheadLink,
+							title_link:'http://fr.wowhead.com/item='+item.itemId,
 							thumb_url: WoW.itemIconUrl(itemData.icon),
 							color: WoW.itemColor(itemData.quality),
 							fields:fields

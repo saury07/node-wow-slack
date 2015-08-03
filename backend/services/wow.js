@@ -26,7 +26,7 @@ WoW.prototype.guildInfos = function(callback){
 WoW.prototype.itemInfos = function(itemId, context, sure, callback){
 	p = parameters.WoW;
 	var url = p.baseUrl + '/item/'+itemId;
-	if(context && context != "quest-reward"){
+	if(context){
 		url = url+'/'+context;
 	}
 	url = url+'?locale='+ p.locale+'&apikey'+p.apikey;
