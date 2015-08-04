@@ -48,6 +48,7 @@ var buildItemDetails = function(item, callback){
                 name:itemData.name,
                 id:item.itemId,
                 ilvl:itemData.itemLevel,
+                quality: itemData.quality,
                 wowheadLink: wowheadLink,
                 sure: sure,
                 timestamp: item.timestamp,
