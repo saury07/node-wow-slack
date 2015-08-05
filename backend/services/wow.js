@@ -23,6 +23,22 @@ WoW.prototype.guildInfos = function(callback){
 	});
 };
 
+WoW.prototype.guildMembers = function(callback){
+	p = parameters.WoW;
+	url =   p.baseUrl + '/guild/' + p.realm + '/' + encodeURIComponent(p.guild) + '?' + 'fields=members' + '&' + 'locale=' + p.locale;
+	request(url, function(error, response, data){
+		if(!error){
+			try {
+				var parsed = JSON.parse(data);
+				callback(parsed);
+			}
+			catch(err){
+				console.log('Impossible to parse incoming data');
+			}
+		}
+	});
+};
+
 WoW.prototype.itemInfos = function(itemId, context, sure, callback){
 	p = parameters.WoW;
 	var url = p.baseUrl + '/item/'+itemId;
