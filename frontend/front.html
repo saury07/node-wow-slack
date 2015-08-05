@@ -17,8 +17,8 @@
                 <tbody>
                 <tr ng-repeat="character in characters">
                     <td><img ng-src="{{character.iconUrl}}"/></td>
-                    <td style="vertical-align: middle;" class="name" ng-style="character.color">{{character.name}}</td>
-                    <td style="vertical-align: middle;">
+                    <td class="name" ng-style="character.color">{{character.name}}</td>
+                    <td>
                         <button class="btn" ng-click="selectCharacter(character)">
                             <span class="glyphicon glyphicon-list"></span>  Loots
                         </button>
@@ -35,7 +35,7 @@
 
                 </select>
             </div>
-            <div class="title" ng-hide="selectedCharacter == null">Loots of {{selectedCharacter.name}}</div>
+            <div class="title" ng-hide="!selectedCharacter">Loots of {{selectedCharacter.name}}</div>
             <div class="loots">
                 <div class="loot" ng-repeat="loot in loots" ng-show="loot.ilvl >= ilvlFilter.value ">
                     <span class="loot-date">{{loot.timestamp | moment:'DD/MM'}}</span>

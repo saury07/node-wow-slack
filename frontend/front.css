@@ -2,6 +2,7 @@
 .table-hover tbody {background: #404040;}
 .table-hover td {font-family: verdana;}
 .table-hover td img {width: 40px; height: 40px;}
+.table tbody tr td {vertical-align: middle;}
 .name {font-size: 17px;}
 .scroll {overflow-y: auto; height: 700px; margin-top: 10px;}
 .filter {margin-top: 10px; margin-left: 40px;}
