@@ -2,6 +2,7 @@ var Datastore = require('nedb');
 var _ = require('lodash');
 
 var dbNews = new Datastore({filename: 'news.db', autoload: true});
+var dbCharacters = new Datastore({filename: 'characters.db', autoload: true});
 var neCache = function () {};
 
 
@@ -46,6 +47,33 @@ neCache.prototype.listCharacters = function(callback){
 			}), function (doc) {
 				return doc.character;
 			}));
+		}
+	});
+};
+
+neCache.prototype.saveCharacter = function (character) {
+	dbCharacters.insert(character, function (err, doc) {
+		if (err) {
+			console.log(err);
+		}
+	});
+};
+
+neCache.prototype.findCharacters = function (character, callback) {
+	dbCharacters.find({'character.name': character.character.name}, function (err, docs) {
+		if(err){
+			console.log(err);
+		}
+		else {
+			callback(docs);
+		}
+	});
+};
+
+neCache.prototype.updateCharacter = function (oldCharacter, newCharacter) {
+	dbCharacters.update({_id: oldCharacter._id}, newCharacter, function (err, docs) {
+		if(err){
+			console.log(err);
 		}
 	});
 };
