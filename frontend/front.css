@@ -10,3 +10,4 @@
 .loot {margin-top: 10px;}
 .loot-date {font-weight: bold;}
 .loot-details {margin-left: 15px; font-weight: bold;}
+.loot-details a {text-decoration: none;}
