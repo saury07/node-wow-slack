@@ -4,10 +4,10 @@
 .table-hover td img {width: 40px; height: 40px;}
 .table tbody tr td {vertical-align: middle;}
 .name {font-size: 17px;}
-.scroll {overflow-y: auto; height: 700px; margin-top: 10px;}
-.filter {margin-top: 10px; margin-left: 40px;}
-.title {margin-top: 10px; margin-left: 40px; font-size: 25px; font-weight: bold;}
-.loots {margin-top: 5px; margin-left: 40px; height: 615px; width: 600px; overflow-y: auto;}
+.scroll {overflow-y: auto; height: 100vh;}
+.filter {padding-top: 10px; margin-left: 40px; height: 5vh; width: 600px;}
+.title {padding-top: 10px; margin-left: 40px; height: 5vh; width: 600px; font-size: 25px; font-weight: bold; border-bottom: 1px solid black;}
+.loots {margin-left: 40px; height: 90vh; width: 600px; overflow-y: auto;}
 .loot {margin-top: 10px;}
 .loot-date {font-weight: bold;}
 .loot-details {margin-left: 15px; font-weight: bold;}
