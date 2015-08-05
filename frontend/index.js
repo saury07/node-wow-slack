@@ -20,8 +20,9 @@ angular.module('wowApp', [])
         ];
 
         $scope.selectCharacter = function(character){
-            $http.get('loots/'+character).success(function(data){
+            $http.get('loots/'+character.name).success(function(data){
                 $scope.loots = data.data;
+                $scope.selectedCharacter = character;
             });
         };
 

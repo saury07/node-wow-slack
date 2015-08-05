@@ -2,11 +2,31 @@ var express = require('express');
 var router = express.Router();
 var neCache = require('../services/ne-cache.js');
 var WoW = require('../services/wow.js');
+var WoWCharacter = require('../services/wow-character.js');
 var _ = require('lodash');
 
 router.get('/', function(req, res, next){
     neCache.listCharacters(function(characters){
-        res.send({characters: characters});
+        if(characters) {
+            var charactersData = [];
+            var finished = _.after(characters.length, function(){
+                charactersData =_.sortByOrder(charactersData, 'name', 'asc');
+                res.send({characters: charactersData});
+            });
+
+            _.each(characters, function(character) {
+                WoWCharacter.baseInfo(character, function(characterData) {
+                    if(characterData) {
+                        charactersData.push({
+                            name: characterData.name,
+                            iconUrl: WoWCharacter.portrait(characterData.thumbnail),
+                            color: {"color": WoWCharacter.color(characterData.class)}
+                        });
+                    }
+                    finished();
+                });
+            });
+        }
     });
 });
 
