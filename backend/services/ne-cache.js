@@ -78,4 +78,15 @@ neCache.prototype.updateCharacter = function (oldCharacter, newCharacter) {
 	});
 };
 
+neCache.prototype.getAllCharacters = function (callback) {
+	dbCharacters.find({}, function (err, docs) {
+		if(err){
+			console.log(err);
+		}
+		else {
+			callback(docs);
+		}
+	});
+};
+
 module.exports = new neCache();
