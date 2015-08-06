@@ -12,12 +12,13 @@
 <body>
 <div ng-controller="WoWLootsController" class="container-fluid">
     <div class="row">
-        <div class="col-md-3 scroll">
+        <div class="col-md-4 scroll">
             <table class="table table-hover">
                 <tbody>
                 <tr ng-repeat="character in characters">
                     <td><img ng-src="{{character.iconUrl}}"/></td>
                     <td class="name" ng-style="character.color">{{character.name}}</td>
+                    <td class="rank">{{character.rank}}</td>
                     <td>
                         <button class="btn" ng-click="selectCharacter(character)">
                             <span class="glyphicon glyphicon-list"></span>  Loots
@@ -27,7 +28,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-8">
             <div class="form-inline filter">
                 Filtre :
                 <select class="form-control" ng-model="ilvlFilter" ng-options="option.display for option in ilvlFilterOptions
@@ -46,11 +47,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-6">
-        <button class="btn" ng-click="test()">
-            <span class="glyphicon glyphicon-list"></span>  Test
-        </button>
     </div>
 </div>
 </body>

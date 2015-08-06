@@ -4,6 +4,7 @@
 .table-hover td img {width: 40px; height: 40px;}
 .table tbody tr td {vertical-align: middle;}
 .name {font-size: 17px;}
+.rank {color: #D8D8D8;}
 .scroll {overflow-y: auto; height: 100vh;}
 .filter {padding-top: 10px; margin-left: 40px; height: 5vh; width: 600px;}
 .title {padding-top: 10px; margin-left: 40px; height: 5vh; width: 600px; font-size: 25px; font-weight: bold; border-bottom: 1px solid black;}
