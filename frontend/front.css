@@ -1,3 +1,8 @@
+.first-part {background: #F2F2F2;}
+.header {height: 5vh; border-bottom: 1px solid black; min-height: 50px;}
+.header-members-title {line-height: 45px; text-align: center; font-size: 20px; font-weight:bold; font-family: verdana;}
+.header-members-filter {margin-top: 7px;}
+.header-members-refresh {margin-top: 7px;}
 .table-hover tbody tr:hover td {background-color: #282828;}
 .table-hover tbody {background: #404040;}
 .table-hover td {font-family: verdana;}
@@ -5,7 +10,7 @@
 .table tbody tr td {vertical-align: middle;}
 .name {font-size: 17px;}
 .rank {color: #D8D8D8;}
-.scroll {overflow-y: auto; height: 100vh;}
+.scroll {overflow-y: auto; height: 95vh;}
 .filter {padding-top: 10px; margin-left: 40px; height: 5vh; width: 600px;}
 .title {padding-top: 10px; margin-left: 40px; height: 5vh; width: 600px; font-size: 25px; font-weight: bold; border-bottom: 1px solid black;}
 .loots {margin-left: 40px; height: 90vh; width: 600px; overflow-y: auto;}
