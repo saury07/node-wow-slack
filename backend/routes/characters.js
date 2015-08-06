@@ -29,6 +29,7 @@ router.get('/update', function(req, res, next){
         var characters = data.members;
         console.log(characters.length + ' characters found');
 
+        var charactersData = [];
         _.each(characters, function(character) {
             neCache.findCharacters(character, function(docs) {
                 if(docs.length == 0) {
@@ -40,7 +41,20 @@ router.get('/update', function(req, res, next){
                     }
                 }
             });
+
+            if(character && character.character.level >= 10) {
+                charactersData.push({
+                    name: character.character.name,
+                    iconUrl: WoWCharacter.portrait(character.character.thumbnail),
+                    color: {"color": WoWCharacter.color(character.character.class)},
+                    rankId: character.rank,
+                    rank: WoWGuild.rank(character.rank)
+                });
+            }
         });
+
+        charactersData =_.sortByOrder(charactersData, ['rankId', 'name'], ['asc', 'asc']);
+        res.send({characters: charactersData});
     });
 });
 
