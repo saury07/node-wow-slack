@@ -15,6 +15,7 @@ app.set('view engine', 'jade');
 
 app.use('/', index);
 app.use('/loots', require('./backend/routes/loots'));
+app.use('/characters', require('./backend/routes/characters'));
 
 module.exports = app;
 

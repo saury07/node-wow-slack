@@ -26,8 +26,14 @@ angular.module('wowApp', [])
             });
         };
 
+        $scope.updateCharacters = function() {
+            $http.get('characters/update').success(function(data){
+                $scope.characters = data.characters;
+            });
+        };
+
         var init = function(){
-            $http.get('loots').success(function(data){
+            $http.get('characters').success(function(data){
                 $scope.characters = data.characters;
             });
         };
