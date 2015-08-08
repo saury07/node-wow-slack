@@ -1,8 +1,9 @@
-.first-part {background: #F2F2F2;}
+.part {background: #F2F2F2;}
+.first {border-right: 2px solid black;}
 .header {height: 5vh; border-bottom: 1px solid black; min-height: 50px;}
-.header-members-title {line-height: 45px; text-align: center; font-size: 20px; font-weight:bold; font-family: verdana;}
-.header-members-filter {margin-top: 7px;}
-.header-members-refresh {margin-top: 7px;}
+.header-title {margin-top: 1vh; text-align: center; font-size: 1vw; font-weight:bold; font-family: verdana;}
+.header-filter {margin-top: 1vh;}
+.header-refresh {margin-top: 1vh;}
 .table-hover tbody tr:hover td {background-color: #282828;}
 .table-hover tbody {background: #404040;}
 .table-hover td {font-family: verdana;}
@@ -10,11 +11,9 @@
 .table tbody tr td {vertical-align: middle;}
 .name {font-size: 17px;}
 .rank {color: #D8D8D8;}
+.second {width: 600px;}
 .scroll {overflow-y: auto; height: 95vh;}
-.filter {padding-top: 10px; margin-left: 40px; height: 5vh; width: 600px;}
-.title {padding-top: 10px; margin-left: 40px; height: 5vh; width: 600px; font-size: 25px; font-weight: bold; border-bottom: 1px solid black;}
-.loots {margin-left: 40px; height: 90vh; width: 600px; overflow-y: auto;}
-.loot {margin-top: 10px;}
+.loot {margin-top: 10px; margin-left: 50px;}
 .loot-date {font-weight: bold;}
 .loot-details {margin-left: 15px; font-weight: bold;}
 .loot-details a {text-decoration: none;}

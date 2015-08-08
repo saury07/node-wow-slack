@@ -10,13 +10,7 @@ router.get('/', function(req, res, next){
         var charactersData = [];
         _.each(characters, function(character) {
             if(character && character.character.level >= 10) {
-                charactersData.push({
-                    name: character.character.name,
-                    iconUrl: WoWCharacter.portrait(character.character.thumbnail),
-                    color: {"color": WoWCharacter.color(character.character.class)},
-                    rankId: character.rank,
-                    rank: WoWGuild.rank(character.rank)
-                });
+                charactersData.push(buildCharacterData(character));
             }
         });
         charactersData =_.sortByOrder(charactersData, ['rankId', 'name'], ['asc', 'asc']);
@@ -43,13 +37,7 @@ router.get('/update', function(req, res, next){
             });
 
             if(character && character.character.level >= 10) {
-                charactersData.push({
-                    name: character.character.name,
-                    iconUrl: WoWCharacter.portrait(character.character.thumbnail),
-                    color: {"color": WoWCharacter.color(character.character.class)},
-                    rankId: character.rank,
-                    rank: WoWGuild.rank(character.rank)
-                });
+                charactersData.push(buildCharacterData(character));
             }
         });
 
@@ -57,5 +45,16 @@ router.get('/update', function(req, res, next){
         res.send({characters: charactersData});
     });
 });
+
+var buildCharacterData = function(character) {
+    return {
+        name: character.character.name,
+        iconUrl: WoWCharacter.portrait(character.character.thumbnail),
+        color: {"color": WoWCharacter.color(character.character.class)},
+        rankId: character.rank,
+        rank: WoWGuild.rank(character.rank),
+        isRoster: WoWGuild.isPartOfRoster(character.rank) ? 1 : 0
+    };
+};
 
 module.exports = router;

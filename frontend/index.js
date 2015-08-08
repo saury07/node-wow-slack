@@ -16,8 +16,14 @@ angular.module('wowApp', [])
             {value:695, display:">=695"},
             {value:685, display:">=685"},
             {value:670, display:">=670"},
-            {value:0, display:"Tout"},
+            {value:0, display:"Tout"}
         ];
+
+        $scope.rankFilterOptions = [
+            {value:1, display:"Roster"},
+            {value:0, display:"Tout"}
+        ];
+        $scope.rankFilter = {value:1, display:"Roster"};
 
         $scope.selectCharacter = function(character){
             $http.get('loots/'+character.name).success(function(data){
