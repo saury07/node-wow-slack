@@ -12,7 +12,7 @@ var Slack = require('node-slackr');
 var slack = new Slack(Parameters.Slack.hook,{
 	username: "wow-bot"
 });
-var neCache = require ("../services/ne-cache.js");
+var neCache = require ("../services/mongo-cache.js");
 
 var buildNewsMessage = function(item, callback){
 	if(item.type === 'itemLoot'){

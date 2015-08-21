@@ -18,6 +18,8 @@
     "lodash":"latest",
     "nedb":"latest",
     "moment":"latest",
-    "async":"latest"
+    "async":"latest",
+    "mongodb":"latest"
+
   }
 }
