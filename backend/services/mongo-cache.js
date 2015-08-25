@@ -29,7 +29,7 @@ neCache.prototype.saveNews = function (item) {
 };
 
 neCache.prototype.findForCharacter = function(character, callback){
-	getDb('new', function(db){
+	getDb('news', function(db){
 		db.find({character:character},{'sort':[['timestamp', 'desc']]}).toArray(function(err, docs){
 			if(err){
 				console.log(err);
