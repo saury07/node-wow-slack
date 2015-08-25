@@ -100,23 +100,37 @@ neCache.prototype.getAllCharacters = function (callback) {
 	});
 };
 
+var currentDb;
+
 var getDb = function(name, callback){
-	Datastore.connect(Parameters.DB.url, function(err, db) {
-		if(err){
-			console.log('----------------');
-			console.log(err);
-			console.log('----------------');
-		}
-		else {
-			var collection = db.collection(name);
-			if(collection){
-				callback(collection);
+	if(!currentDb) {
+		Datastore.connect(Parameters.DB.url, function (err, db) {
+			if (err) {
+				console.log(err);
 			}
-			else{
-				console.log('Can\'t find collection' + name);
+			else {
+				currentDb = db;
+				var collection = currentDb.collection(name);
+				if (collection) {
+					callback(collection);
+				}
+				else {
+					console.log('Can\'t find collection' + name);
+				}
 			}
+		});
+	}
+	else{
+		var collection = currentDb.collection(name);
+		if (collection) {
+			callback(collection);
 		}
-	});
+		else{
+			console.log('Collection '+name+' not found, clearing dbConnection.')
+			currentDb.close();
+			currentDb = null;
+		}
+	}
 };
 
 module.exports = new neCache();
