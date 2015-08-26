@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var neCache = require('../services/ne-cache.js');
+var neCache = require('../services/mongo-cache.js');
 var WoW = require('../services/wow.js');
 var _ = require('lodash');
 
