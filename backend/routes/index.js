@@ -24,7 +24,7 @@ var buildNewsMessage = function(item, callback){
 					short:true
 				}
 			];
-			if(itemData.itemLevel < Parameters.WoW.minIlvl){
+			if(!itemData.itemLevel || !itemData.name || itemData.itemLevel < Parameters.WoW.minIlvl){
 				return;
 			}
 			if(itemData.inventoryType){
