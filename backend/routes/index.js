@@ -20,7 +20,7 @@ var buildNewsMessage = function(item, callback){
 			var fields = [
 				{
 					title: sure ? 'Item level': 'Item level (incertain)',
-					value: itemData.itemLevel,
+					value: itemData.itemLevel.toString(),
 					short:true
 				}
 			];
