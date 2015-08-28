@@ -20,11 +20,11 @@ var buildNewsMessage = function(item, callback){
 			var fields = [
 				{
 					title: sure ? 'Item level': 'Item level (incertain)',
-					value: itemData.itemLevel,
+					value: itemData.itemLevel.toString(),
 					short:true
 				}
 			];
-			if(itemData.itemLevel < Parameters.WoW.minIlvl){
+			if(!itemData.itemLevel || !itemData.name || itemData.itemLevel < Parameters.WoW.minIlvl){
 				return;
 			}
 			if(itemData.inventoryType){
