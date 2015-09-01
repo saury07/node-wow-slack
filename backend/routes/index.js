@@ -17,6 +17,9 @@ var neCache = require ("../services/mongo-cache.js");
 var buildNewsMessage = function(item, callback){
 	if(item.type === 'itemLoot'){
 		WoW.itemInfos(item.itemId, item.context, true, function(itemData, sure){
+			if(!itemData.itemLevel){
+				return;
+			}
 			var fields = [
 				{
 					title: sure ? 'Item level': 'Item level (incertain)',
@@ -24,7 +27,7 @@ var buildNewsMessage = function(item, callback){
 					short:true
 				}
 			];
-			if(!itemData.itemLevel || !itemData.name || itemData.itemLevel < Parameters.WoW.minIlvl){
+			if(!itemData.name || itemData.itemLevel < Parameters.WoW.minIlvl){
 				return;
 			}
 			if(itemData.inventoryType){
