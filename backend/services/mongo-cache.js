@@ -56,7 +56,7 @@ neCache.prototype.listCharacters = function(callback){
 
 neCache.prototype.saveCharacter = function (character) {
 	getDb('characters', function(db){
-		db.save(character, {w:1}, function (err, doc) {
+		db.insert(character, function (err, doc) {
 			if (err) {
 				console.log(err);
 			}
@@ -64,26 +64,9 @@ neCache.prototype.saveCharacter = function (character) {
 	});
 };
 
-neCache.prototype.findCharacters = function (character, callback) {
-	getDb('characters',function(db) {
-		db.find({'character.name': character.character.name}).toArray(function (err, docs) {
-			if (err) {
-				console.log(err);
-			}
-			else {
-				callback(docs);
-			}
-		});
-	});
-};
-
-neCache.prototype.updateCharacter = function (oldCharacter, newCharacter) {
-	getDb('characters',function(db){
-		db.update({_id: oldCharacter._id}, newCharacter, function (err, docs) {
-			if(err){
-				console.log(err);
-			}
-		});
+neCache.prototype.dropCharacters = function() {
+	getDb('characters', function(db){
+		db.drop();
 	});
 };
 
