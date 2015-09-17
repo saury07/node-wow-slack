@@ -4,21 +4,25 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Shojumaru' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="http://static.wowhead.com/widgets/power.js"></script>
-    <script>var wowhead_tooltips = { "colorlinks": true, "iconizelinks": true, "renamelinks": true }</script>
+    <script>var wowhead_tooltips = { "colorlinks": true, "iconizelinks": false, "renamelinks": true }</script>
     <script src="index.js"></script>
     <link href="front.css" rel="stylesheet" />
 </head>
 <body>
-<div ng-controller="WoWLootsController" class="container-fluid">
+<div ng-controller="WoWLootsController" class="container">
     <div class="row">
-        <div class="col-md-4 part first">
-            <div class="header">
-                <span class="col-md-5 header-title">On en aggrø</span>
-                <div class="col-md-6 form-inline header-filter">
+        <div class="header">
+            <img class="horde" ng-src="images/horde.png">
+            <span class="header-title-guild">On en aggrø</span>
+        </div>
+        <div class="col-md-6 part first">
+            <div class="part-header">
+                <div class="form-inline part-header-filter">
                     Afficher : <select class="form-control" ng-model="rankFilter" ng-options="option.display for option in rankFilterOptions track by option.value"></select>
                 </div>
-                <button class="col-md-1 btn glyphicon glyphicon-refresh header-refresh" ng-click="updateCharacters()"></button>
+                <button class="btn glyphicon glyphicon-refresh part-header-button" ng-click="updateCharacters()"></button>
             </div>
             <div class="scroll">
                 <table class="table table-hover">
@@ -37,22 +41,34 @@
                 </table>
             </div>
         </div>
-        <div class="col-md-8 part second">
-            <div class="header">
-                <div class="col-md-7 header-title">
-                    <span ng-hide="!selectedCharacter">Loots of {{selectedCharacter.name}}</span>
-                </div>
-                <div class="col-md-5 form-inline header-filter">
+        <div class="col-md-6 part second">
+            <div class="part-header">
+                <div class="form-inline part-header-filter">
                     Filtre : <select class="form-control" ng-model="ilvlFilter" ng-options="option.display for option in ilvlFilterOptions track by option.value"></select>
                 </div>
+                <div class="part-header-title">
+                    <span ng-hide="!selectedCharacter">{{selectedCharacter}}</span>
+                </div>
+                <button class="btn part-header-button" ng-click="selectGuildLoots()">
+                    <span class="glyphicon glyphicon-list"></span>  Loots de guilde du jour
+                </button>
             </div>
-            <div class="scroll">
-                <div class="loot" ng-repeat="loot in loots" ng-show="loot.ilvl >= ilvlFilter.value ">
-                    <span class="loot-date">{{loot.timestamp | moment:'DD/MM'}}</span>
-                    <span class="loot-details">
-                        <a target="_blank" ng-href="{{loot.wowheadLink}}" class="q{{loot.quality}}"><img ng-src="{{loot.icon}}"/> {{loot.name}}</a>
+            <div ng-show="selectedCharacter != 'Guilde'" class="scroll">
+                <div class="character-loot" ng-repeat="loot in loots" ng-show="loot.ilvl >= ilvlFilter.value ">
+                    <span class="character-loot-date">{{loot.timestamp | moment:'DD/MM'}}</span>
+                    <span class="character-loot-details">
+                        <img ng-src="{{loot.icon}}"/>
+                        <a target="_blank" ng-href="{{loot.wowheadLink}}" class="q{{loot.quality}}">  {{loot.name}}</a>
                     </span>
                     <span ng-show="!loot.sure">(incertain)</span>
+                </div>
+            </div>
+            <div ng-show="selectedCharacter == 'Guilde'" class="scroll">
+                <div class="guild-loot" ng-repeat="loot in loots" ng-show="loot.ilvl >= ilvlFilter.value ">
+                    <span class="guild-loot-date">[{{loot.timestamp | moment:'DD/MM HH:mm'}}]</span>
+                    <span class="guild-loot-content">
+                        {{loot.character}} a looté <a target="_blank" ng-href="{{loot.wowheadLink}}" class="q{{loot.quality}}">  {{loot.name}}</a>
+                    </span>
                 </div>
             </div>
         </div>

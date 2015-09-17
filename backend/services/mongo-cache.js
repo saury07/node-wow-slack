@@ -1,5 +1,6 @@
 var Datastore = require('mongodb').MongoClient;
 var _ = require('lodash');
+var moment = require('moment');
 var Parameters = require('../../parameters.js');
 
 var neCache = function () {};
@@ -31,6 +32,20 @@ neCache.prototype.saveNews = function (item) {
 neCache.prototype.findForCharacter = function(character, callback){
 	getDb('news', function(db){
 		db.find({character:character},{'sort':[['timestamp', 'desc']]}).toArray(function(err, docs){
+			if(err){
+				console.log(err);
+			}
+			else{
+				callback(docs);
+			}
+		});
+	});
+};
+
+neCache.prototype.findNewsOfTheDay = function(callback){
+	var dayInMillis = moment().startOf('day').valueOf();
+	getDb('news', function(db){
+		db.find({'$and':[{'type':'itemLoot'}, {'timestamp':{'$gt':dayInMillis}}]}).sort({'timestamp':1}).toArray(function(err, docs){
 			if(err){
 				console.log(err);
 			}

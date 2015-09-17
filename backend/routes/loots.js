@@ -29,6 +29,30 @@ router.get('/:character', function(req,res,next){
     });
 });
 
+router.get('/guild/lootsOfTheDay', function(req, res) {
+    neCache.findNewsOfTheDay(function(docs) {
+        if(docs && docs.length > 0){
+            var prettyDocs = [];
+            var finished = _.after(docs.length, function(){
+                prettyDocs =_.sortByOrder(prettyDocs,['timestamp', 'character'], ['asc', 'asc']);
+                res.send({data: prettyDocs});
+            });
+            _.forEach(docs, function(doc){
+                buildItemDetails(doc,function(itemDetail){
+                    if(itemDetail !== null){
+                        prettyDocs.push(itemDetail);
+                    }
+                    finished();
+                });
+            });
+
+        }
+        else{
+            res.send({data:{}})
+        }
+    });
+});
+
 var buildItemDetails = function(item, callback){
     if(item.type === 'itemLoot'){
         WoW.itemInfos(item.itemId, item.context, true, function(itemData, sure){
@@ -42,6 +66,7 @@ var buildItemDetails = function(item, callback){
             callback({
                 name:itemData.name,
                 id:item.itemId,
+                character: item.character,
                 ilvl:itemData.itemLevel,
                 quality: itemData.quality,
                 wowheadLink: wowheadLink,

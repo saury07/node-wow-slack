@@ -1,19 +1,30 @@
-.part {background: #F2F2F2;}
-.first {border-right: 2px solid black;}
-.header {height: 5vh; border-bottom: 1px solid black; min-height: 50px;}
-.header-title {margin-top: 1vh; text-align: center; font-size: 1vw; font-weight:bold; font-family: verdana;}
-.header-filter {margin-top: 1vh;}
-.header-refresh {margin-top: 1vh;}
-.table-hover tbody tr:hover td {background-color: #282828;}
-.table-hover tbody {background: #404040;}
+/* Theme: http://www.google.com/design/spec/style/color.html#color-color-palette (Grey) */
+body {background: #212121;} /* 900 */
+.header {height: 150px; background: #EEEEEE; border-bottom: 2px solid #212121;} /* 200 */
+.horde {width: 120px; height: 148px; margin-left: 100px;}
+.alliance {width: 120px; height: 131px; margin-left: 100px;}
+.header-title-guild {font-family: 'Shojumaru', cursive; font-size: 60px; margin-left: 125px;}
+.part {background: #F5F5F5;}  /* 100 */
+.first {border-right: 2px solid black; min-width: 500px;}
+.part-header {height: 60px; border-bottom: 1px solid black;}
+.part-header-title {margin-top: 14px; text-align: center; font-size: 1vw; font-weight:bold; font-family: verdana; float: left; margin-left: 50px;}
+.part-header-filter {margin-top: 11px; float: left;}
+.part-header-button {margin-top: 11px; float: right;}
+.table-hover tbody tr:hover td {background-color: #212121;} /* 900 */
+.table-hover tbody {background: #424242;} /* 800 */
 .table-hover td {font-family: verdana;}
 .table-hover td img {width: 40px; height: 40px;}
 .table tbody tr td {vertical-align: middle;}
 .name {font-size: 17px;}
 .rank {color: #D8D8D8;}
-.second {width: 600px;}
-.scroll {overflow-y: auto; height: 95vh;}
-.loot {margin-top: 10px; margin-left: 50px;}
-.loot-date {font-weight: bold;}
-.loot-details {margin-left: 15px; font-weight: bold;}
-.loot-details a {text-decoration: none;}
+.second {min-width: 500px;}
+.scroll {overflow-y: auto; height: calc(100vh - 210px);}
+.character-loot {margin-top: 10px; margin-left: 50px;}
+.character-loot-date {font-weight: bold;}
+.character-loot-details {margin-left: 15px; font-weight: bold;}
+.character-loot-details a {text-decoration: none;}
+.character-loot-details img {width: 40px; height: 40px;}
+.guild-loot {margin-top: 20px; margin-left: 20px;}
+.guild-loot-date {font-weight: bold;}
+.guild-loot-content {margin-left: 10px; font-weight: bold;}
+.guild-loot-content a {text-decoration: none;}
