@@ -1,5 +1,6 @@
 var Datastore = require('mongodb').MongoClient;
 var _ = require('lodash');
+var moment = require('moment');
 var Parameters = require('../../parameters.js');
 
 var neCache = function () {};
@@ -41,6 +42,20 @@ neCache.prototype.findForCharacter = function(character, callback){
 	});
 };
 
+neCache.prototype.findNewsOfTheDay = function(callback){
+	var dayInMillis = moment().startOf('day').valueOf();
+	getDb('news', function(db){
+		db.find({'$and':[{'type':'itemLoot'}, {'timestamp':{'$gt':dayInMillis}}]}).sort({'timestamp':1}).toArray(function(err, docs){
+			if(err){
+				console.log(err);
+			}
+			else{
+				callback(docs);
+			}
+		});
+	});
+};
+
 neCache.prototype.listCharacters = function(callback){
 	getDb('news', function(db){
 		db.distinct('character',function(err, docs){
@@ -56,7 +71,7 @@ neCache.prototype.listCharacters = function(callback){
 
 neCache.prototype.saveCharacter = function (character) {
 	getDb('characters', function(db){
-		db.save(character, {w:1}, function (err, doc) {
+		db.insert(character, function (err, doc) {
 			if (err) {
 				console.log(err);
 			}
@@ -64,26 +79,9 @@ neCache.prototype.saveCharacter = function (character) {
 	});
 };
 
-neCache.prototype.findCharacters = function (character, callback) {
-	getDb('characters',function(db) {
-		db.find({'character.name': character.character.name}).toArray(function (err, docs) {
-			if (err) {
-				console.log(err);
-			}
-			else {
-				callback(docs);
-			}
-		});
-	});
-};
-
-neCache.prototype.updateCharacter = function (oldCharacter, newCharacter) {
-	getDb('characters',function(db){
-		db.update({_id: oldCharacter._id}, newCharacter, function (err, docs) {
-			if(err){
-				console.log(err);
-			}
-		});
+neCache.prototype.dropCharacters = function() {
+	getDb('characters', function(db){
+		db.drop();
 	});
 };
 

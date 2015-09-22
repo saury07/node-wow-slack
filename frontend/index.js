@@ -25,10 +25,17 @@ angular.module('wowApp', [])
         ];
         $scope.rankFilter = {value:1, display:"Roster"};
 
+        $scope.selectGuildLoots = function() {
+            $http.get('loots/guild/lootsOfTheDay').success(function(data){
+                $scope.loots = data.data;
+                $scope.selectedCharacter = 'Guilde';
+            });
+        };
+
         $scope.selectCharacter = function(character){
             $http.get('loots/'+character.name).success(function(data){
                 $scope.loots = data.data;
-                $scope.selectedCharacter = character;
+                $scope.selectedCharacter = character.name;
             });
         };
 
@@ -41,6 +48,10 @@ angular.module('wowApp', [])
         var init = function(){
             $http.get('characters').success(function(data){
                 $scope.characters = data.characters;
+            });
+            $http.get('/loots/guild/lootsOfTheDay').success(function(data){
+                $scope.loots = data.data;
+                $scope.selectedCharacter = 'Guilde';
             });
         };
 

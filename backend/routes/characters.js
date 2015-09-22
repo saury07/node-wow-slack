@@ -24,22 +24,25 @@ router.get('/update', function(req, res, next){
         console.log(characters.length + ' characters found');
 
         var charactersData = [];
-        _.each(characters, function(character) {
-            neCache.findCharacters(character, function(docs) {
-                if(docs.length == 0) {
-                    neCache.saveCharacter(character);
-                } else {
-                    var dbCharacter = docs[0];
-                    if(dbCharacter.rank != character.rank) {
-                        neCache.updateCharacter(dbCharacter, character);
-                    }
+        if(characters.length > 0) {
+            neCache.dropCharacters();
+
+            _.each(characters, function (character) {
+                neCache.saveCharacter(character);
+
+                if(character && character.character.level >= 10) {
+                    charactersData.push(buildCharacterData(character));
                 }
             });
-
-            if(character && character.character.level >= 10) {
-                charactersData.push(buildCharacterData(character));
-            }
-        });
+        } else {
+            neCache.getAllCharacters(function(characters) {
+                _.each(characters, function(character) {
+                    if(character && character.character.level >= 10) {
+                        charactersData.push(buildCharacterData(character));
+                    }
+                });
+            });
+        }
 
         charactersData =_.sortByOrder(charactersData, ['rankId', 'name'], ['asc', 'asc']);
         res.send({characters: charactersData});
