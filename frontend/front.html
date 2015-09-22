@@ -53,7 +53,7 @@
                     <span class="glyphicon glyphicon-list"></span>  Loots de guilde du jour
                 </button>
             </div>
-            <div ng-show="selectedCharacter != 'Guilde'" class="scroll">
+            <div ng-show="selectedCharacter !== 'Guilde'" class="scroll">
                 <div class="character-loot" ng-repeat="loot in loots" ng-show="loot.ilvl >= ilvlFilter.value ">
                     <span class="character-loot-date">{{loot.timestamp | moment:'DD/MM'}}</span>
                     <span class="character-loot-details">
@@ -63,7 +63,7 @@
                     <span ng-show="!loot.sure">(incertain)</span>
                 </div>
             </div>
-            <div ng-show="selectedCharacter == 'Guilde'" class="scroll">
+            <div ng-show="selectedCharacter === 'Guilde'" class="scroll">
                 <div class="guild-loot" ng-repeat="loot in loots" ng-show="loot.ilvl >= ilvlFilter.value ">
                     <span class="guild-loot-date">[{{loot.timestamp | moment:'DD/MM HH:mm'}}]</span>
                     <span class="guild-loot-content">
