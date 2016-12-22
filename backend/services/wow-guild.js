@@ -41,7 +41,7 @@ WoWGuild.prototype.rank = function(rankId) {
 };
 
 WoWGuild.prototype.isPartOfRoster = function(rankId) {
-    return (rankId == 0 || rankId == 1 || rankId == 3);
+    return (rankId == 0 || rankId == 1 || rankId == 3 || rankId == 7);
 };
 
 module.exports = new WoWGuild();
