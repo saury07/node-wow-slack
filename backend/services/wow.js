@@ -11,7 +11,6 @@ WoW.prototype.guildInfos = function(callback){
 			'fields=' + p.fields.join() + '&' +
 			'locale=' + p.locale + '&' +
 			'apikey=' + p.apikey;
-	console.log(url)
 	request(url, function(error, response, data){
 		if(!error){
 			try {
@@ -32,7 +31,6 @@ WoW.prototype.itemInfos = function(itemId, context, sure, callback){
 		url = url+'/'+context;
 	}
 	url = url+'?locale='+ p.locale+'&apikey='+p.apikey;
-	console.log(url)
 	request(url, function(error, response, data){
 		if(!error){
 			var parsed = JSON.parse(data);
