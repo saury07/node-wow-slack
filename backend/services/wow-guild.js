@@ -20,7 +20,6 @@ WoWGuild.prototype.ranks = [
 WoWGuild.prototype.members = function(callback){
     p = parameters.WoW;
     url =   p.baseUrl + 'guild/' + p.realm + '/' + encodeURIComponent(p.guild) + '?' + 'fields=members' + '&' + 'locale=' + p.locale + '&apikey=' +p.apikey;
-    console.log(url)
     request(url, function(error, response, data){
         if(!error){
             try {
@@ -42,7 +41,7 @@ WoWGuild.prototype.rank = function(rankId) {
 };
 
 WoWGuild.prototype.isPartOfRoster = function(rankId) {
-    return (rankId == 0 || rankId == 1 || rankId == 3);
+    return (rankId == 0 || rankId == 1 || rankId == 3 || rankId == 7);
 };
 
 module.exports = new WoWGuild();
