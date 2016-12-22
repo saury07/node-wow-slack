@@ -9,7 +9,7 @@ WoW.prototype.guildInfos = function(callback){
 			p.realm + '/' +
 			encodeURIComponent(p.guild) + '?' +
 			'fields=' + p.fields.join() + '&' +
-			'locale=' + p.locale;
+			'locale=' + p.locale + '&apikey='+p.apikey;
 	request(url, function(error, response, data){
 		if(!error){
 			try {
