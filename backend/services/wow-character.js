@@ -42,7 +42,7 @@ WoWCharacter.prototype.color = function(classId) {
 };
 
 WoWCharacter.prototype.portrait = function(portraiturl){
-	return "http://eu.battle.net/static-render/eu/"+portraiturl;
+	return "http://render-eu.worldofwarcraft.com/character/"+portraiturl;
 };
 
 module.exports = new WoWCharacter();
