@@ -9,7 +9,9 @@ WoW.prototype.guildInfos = function(callback){
 			p.realm + '/' +
 			encodeURIComponent(p.guild) + '?' +
 			'fields=' + p.fields.join() + '&' +
-			'locale=' + p.locale;
+			'locale=' + p.locale + '&' +
+			'apikey=' + p.apikey;
+	console.log(url)
 	request(url, function(error, response, data){
 		if(!error){
 			try {
@@ -17,7 +19,7 @@ WoW.prototype.guildInfos = function(callback){
 				callback(parsed);
 			}
 			catch(err){
-				console.log('Impossible to parse incoming data');
+				console.log('Impossible to parse incoming data', err);
 			}
 		}
 	});
@@ -29,7 +31,8 @@ WoW.prototype.itemInfos = function(itemId, context, sure, callback){
 	if(context && context != "quest-reward"){
 		url = url+'/'+context;
 	}
-	url = url+'?locale='+ p.locale+'&apikey'+p.apikey;
+	url = url+'?locale='+ p.locale+'&apikey='+p.apikey;
+	console.log(url)
 	request(url, function(error, response, data){
 		if(!error){
 			var parsed = JSON.parse(data);
@@ -39,6 +42,9 @@ WoW.prototype.itemInfos = function(itemId, context, sure, callback){
 			else {
 				callback(parsed, sure);
 			}
+		}
+		else{
+			console.log(error)
 		}
 	});
 };

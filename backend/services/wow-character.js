@@ -21,11 +21,14 @@ WoWCharacter.prototype.classesColors = [
 WoWCharacter.prototype.baseInfo = function(charname, callback){
 	charname = encodeURI(charname);
 	p = parameters.WoW;
-	url = p.baseUrl + '/character/'+ p.realm+'/'+charname+'?locale='+ p.locale+'&apikey'+p.apikey;
+	url = p.baseUrl + '/character/'+ p.realm+'/'+charname+'?locale='+ p.locale+'&apikey='+p.apikey;
 	request(url, function(error, response, data){
 		if(!error){
 			var parsed = JSON.parse(data);
 			callback(parsed);
+		}
+		else{
+			console.log('Error getting ', url, ' ', error)
 		}
 	});
 };

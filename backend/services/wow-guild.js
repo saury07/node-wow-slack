@@ -19,7 +19,8 @@ WoWGuild.prototype.ranks = [
 
 WoWGuild.prototype.members = function(callback){
     p = parameters.WoW;
-    url =   p.baseUrl + '/guild/' + p.realm + '/' + encodeURIComponent(p.guild) + '?' + 'fields=members' + '&' + 'locale=' + p.locale;
+    url =   p.baseUrl + 'guild/' + p.realm + '/' + encodeURIComponent(p.guild) + '?' + 'fields=members' + '&' + 'locale=' + p.locale + '&apikey=' +p.apikey;
+    console.log(url)
     request(url, function(error, response, data){
         if(!error){
             try {
@@ -27,7 +28,7 @@ WoWGuild.prototype.members = function(callback){
                 callback(parsed);
             }
             catch(err){
-                console.log('Impossible to parse incoming data');
+                console.log('Impossible to parse incoming data', err);
             }
         }
     });
