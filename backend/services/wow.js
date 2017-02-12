@@ -1,3 +1,4 @@
+var _ = require('lodash');
 var parameters = require('./../../parameters.js');
 var request = require('request');
 
@@ -24,18 +25,26 @@ WoW.prototype.guildInfos = function(callback){
 	});
 };
 
-WoW.prototype.itemInfos = function(itemId, context, sure, callback){
+WoW.prototype.itemInfos = function(item, context, sure, callback){
 	p = parameters.WoW;
-	var url = p.baseUrl + '/item/'+itemId;
+	var url = p.baseUrl + '/item/'+item.itemId;
 	if(context && context != "quest-reward"){
 		url = url+'/'+context;
 	}
 	url = url+'?locale='+ p.locale+'&apikey='+p.apikey;
+
+    if(item.bonusLists && item.bonusLists.length > 0) {
+        url += "&bl=";
+        _.each(item.bonusLists, function (bonus, index) {
+            url += (index == 0) ? bonus : "," + bonus;
+        });
+    }
+
 	request(url, function(error, response, data){
 		if(!error){
 			var parsed = JSON.parse(data);
 			if(!parsed.itemLevel && parsed.availableContexts){
-				WoW.prototype.itemInfos(itemId,parsed.availableContexts[0], false, callback);
+				WoW.prototype.itemInfos(item, parsed.availableContexts[0], false, callback);
 			}
 			else {
 				callback(parsed, sure);
