@@ -15,7 +15,8 @@ WoWCharacter.prototype.classesColors = [
 	{ "id":8, "color":"#69CCF0" },	//Mage
 	{ "id":9, "color":"#9482C9" },	//Warlock
 	{ "id":10, "color":"#00FF96" },	//Monk
-	{ "id":11, "color":"#FF7D0A" }	//Druid
+	{ "id":11, "color":"#FF7D0A" },	//Druid
+	{ "id":12, "color":"#A330C9" }	//Demon hunter
 ];
 
 WoWCharacter.prototype.baseInfo = function(charname, callback){
@@ -41,7 +42,7 @@ WoWCharacter.prototype.color = function(classId) {
 };
 
 WoWCharacter.prototype.portrait = function(portraiturl){
-	return "http://eu.battle.net/static-render/eu/"+portraiturl;
+	return "http://render-eu.worldofwarcraft.com/character/"+portraiturl;
 };
 
 module.exports = new WoWCharacter();

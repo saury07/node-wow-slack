@@ -55,7 +55,7 @@ router.get('/guild/lootsOfTheDay', function(req, res) {
 
 var buildItemDetails = function(item, callback){
     if(item.type === 'itemLoot'){
-        WoW.itemInfos(item.itemId, item.context, true, function(itemData, sure){
+        WoW.itemInfos(item, item.context, true, function(itemData, sure){
             var wowheadLink = 'http://fr.wowhead.com/item='+item.itemId;
             if(item.bonusLists && item.bonusLists.length > 0) {
                 wowheadLink += "&bonus=";

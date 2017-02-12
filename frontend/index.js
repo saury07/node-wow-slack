@@ -10,12 +10,12 @@ angular.module('wowApp', [])
 
         $scope.loots = [];
 
-        $scope.ilvlFilter = {value:695, display:">=695"};
+        $scope.ilvlFilter = {value:880, display:">=880"};
 
         $scope.ilvlFilterOptions = [
-            {value:695, display:">=695"},
-            {value:685, display:">=685"},
-            {value:670, display:">=670"},
+            {value:880, display:">=880"},
+            {value:860, display:">=860"},
+            {value:840, display:">=840"},
             {value:0, display:"Tout"}
         ];
 

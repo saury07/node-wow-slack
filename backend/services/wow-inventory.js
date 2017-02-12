@@ -30,4 +30,23 @@ WoWInventory.prototype.inventoryTypes = {
 		"28": "Relique"
 };
 
+WoWInventory.prototype.relicTypes = {
+    "ARCANE": "Arcane",
+    "WATER": "Eau",
+    "IRON": "Fer",
+    "FIRE": "Feu",
+    "FEL": "Gangrené",
+    "FROST": "Givre",
+    "SHADOW": "Ombre",
+    "HOLY": "Sacré",
+    "BLOOD": "Sang",
+    "WIND": "Tempête",
+    "LIFE": "Vie"
+};
+
+WoWInventory.prototype.triggers = {
+	"ON_EQUIP": "Equipé",
+	"ON_USE": "Utilise"
+};
+
 module.exports = new WoWInventory();
